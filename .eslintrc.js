@@ -11,7 +11,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['prettier', 'prettier', 'react', '@typescript-eslint'],
+  plugins: ['prettier', 'react', '@typescript-eslint'],
   rules: {
     '@typescript-eslint/no-unused-vars': 'error',
     'import/prefer-default-export': 'off',
