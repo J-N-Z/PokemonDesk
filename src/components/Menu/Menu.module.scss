@@ -1,0 +1,17 @@
+.menu {
+  width: 100%;
+  font-size: 25px;
+  line-height: 29px;
+  color: #212121;
+}
+
+.list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item {
+  &--active {
+    border-bottom: 1px solid #000;
+  }
+}
