@@ -10,7 +10,7 @@ export const Footer: FC = () => {
           ❤️
         </span>
       </div>
-      <div className={s.menu}>Ours Team</div>
+      <div>Ours Team</div>
     </div>
   );
 };
