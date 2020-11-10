@@ -22,8 +22,6 @@ export const Parallax: FC = () => {
     return () => window.addEventListener('mousemove', handleMouseMove);
   }, [screenX, screenY]);
 
-  console.log('screenX, screenY', screenX, screenY);
-
   return (
     <div className={s.root}>
       <div className={s.smallPokeBall}>
