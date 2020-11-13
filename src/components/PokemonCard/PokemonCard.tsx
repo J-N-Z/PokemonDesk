@@ -4,7 +4,7 @@ import s from './PokemonCard.module.scss';
 
 interface PokemonCardProps {}
 
-export const PokemonCard: FC<PokemonCardProps> = ({}) => {
+export const PokemonCard: FC<PokemonCardProps> = () => {
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>

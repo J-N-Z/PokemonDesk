@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { A, usePath } from 'hookrouter';
 import cn from 'classnames';
 import s from './Header.module.scss';
 import { ReactComponent as PokemonLogoSvg } from '../../images/logo.svg';
 import { GENERAL_MENU } from '../../routes';
 
-export const Header: FC = () => {
+export const Header: FC = memo(() => {
   const path = usePath();
 
   return (
@@ -24,4 +24,4 @@ export const Header: FC = () => {
       </div>
     </div>
   );
-};
+});
