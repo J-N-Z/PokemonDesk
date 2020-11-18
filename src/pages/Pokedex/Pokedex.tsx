@@ -6,12 +6,16 @@ import s from './Pokedex.module.scss';
 
 export const PokedexPage = () => {
   const [searchValue, setSearchValue] = useState('');
-  const { data, isLoading, isError } = useData('getPokemons');
+  const [query, setQuery] = useState({});
 
-  console.log('data', data);
+  const { data, isLoading, isError } = useData('getPokemons', query, [searchValue]);
 
   const handleSearchValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
+    setQuery((s) => ({
+      ...s,
+      name: e.target.value,
+    }));
   };
 
   const pokemonCards = data?.pokemons.map((pokemon) => (

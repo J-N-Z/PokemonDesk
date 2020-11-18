@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { req } from '../utils/request';
 
-export const useData = (endpoint: string, query: object) => {
+export const useData = (endpoint: string, query: object, deps: any[] = []) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -19,7 +19,7 @@ export const useData = (endpoint: string, query: object) => {
     };
 
     getData();
-  }, []);
+  }, deps);
 
   return {
     data,
