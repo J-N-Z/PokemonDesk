@@ -2,22 +2,44 @@ import React, { FC } from 'react';
 import { Heading } from '../Heading';
 import s from './PokemonCard.module.scss';
 
-interface PokemonCardProps {}
+enum Types {
+  'water',
+  'fire',
+  'grass',
+}
 
-export const PokemonCard: FC<PokemonCardProps> = ({}) => {
+interface PokemonCardProps {
+  pokemon: {
+    name: string;
+    img: string;
+    stats: {
+      attack: number;
+      defense: number;
+    };
+    types: string[];
+  };
+}
+
+export const PokemonCard: FC<PokemonCardProps> = ({ pokemon: { name, img, stats, types } }) => {
+  const mainType = types.find((type) => {
+    return Types[type];
+  });
+
+  console.log('mainType', mainType);
+
   return (
     <div className={s.root}>
       <div className={s.infoWrap}>
-        <Heading level={4} className={s.titleName}>
-          Charmander
+        <Heading level={5} className={s.titleName}>
+          {name}
         </Heading>
         <div className={s.statWrap}>
           <div className={s.statItem}>
-            <div className={s.statValue}>52</div>
+            <div className={s.statValue}>{stats.attack}</div>
             Attack
           </div>
           <div className={s.statItem}>
-            <div className={s.statValue}>43</div>
+            <div className={s.statValue}>{stats.defense}</div>
             Defense
           </div>
         </div>
@@ -26,10 +48,7 @@ export const PokemonCard: FC<PokemonCardProps> = ({}) => {
         </div>
       </div>
       <div className={s.pictureWrap}>
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
-          alt="Charmander"
-        />
+        <img src={img} alt={name} />
       </div>
     </div>
   );
