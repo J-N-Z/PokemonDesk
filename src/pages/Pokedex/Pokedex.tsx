@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PokemonCard } from '../../components/PokemonCard';
+import s from './Pokedex.module.scss';
 
 const usePokemons = () => {
   const [data, setData] = useState({ pokemons: [] });
@@ -32,7 +33,11 @@ const usePokemons = () => {
 export const PokedexPage = () => {
   const { data, isLoading, isError } = usePokemons();
 
-  const pokemonCards = data.pokemons.map((pokemon) => <PokemonCard key={pokemon.id} />);
+  const pokemonCards = data.pokemons.map((pokemon) => (
+    <div className={s.card}>
+      <PokemonCard key={pokemon.id} pokemon={pokemon} />
+    </div>
+  ));
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -44,8 +49,8 @@ export const PokedexPage = () => {
 
   return (
     <div>
-      <div>{data.total} pokemons</div>
-      <div>{pokemonCards}</div>
+      <div>{data.total} Pokemons for you to choose your favorite</div>
+      <div className={s.cards}>{pokemonCards}</div>
     </div>
   );
 };

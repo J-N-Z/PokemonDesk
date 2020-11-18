@@ -1,6 +1,10 @@
 @import '../../variables';
 
-.root {
-  min-height: 100vh;
-  background: linear-gradient(180deg, $third 0%, $primary 100%);
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin-right: 34px;
 }
