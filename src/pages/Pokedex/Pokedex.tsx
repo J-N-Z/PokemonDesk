@@ -1,39 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PokemonCard } from '../../components/PokemonCard';
+import { useData } from '../../hook/getData';
+
 import s from './Pokedex.module.scss';
 
-const usePokemons = () => {
-  const [data, setData] = useState({ pokemons: [] });
-  const [isLoading, setIsLoading] = useState(true);
-  const [isError, setIsError] = useState(false);
-
-  useEffect(() => {
-    const getPokemons = async () => {
-      try {
-        const response = await fetch('http://zar.hosthot.ru/api/v1/pokemons');
-        const result = await response.json();
-        setData(result);
-      } catch (e) {
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getPokemons();
-  }, []);
-
-  return {
-    data,
-    isLoading,
-    isError,
-  };
-};
-
 export const PokedexPage = () => {
-  const { data, isLoading, isError } = usePokemons();
+  const [searchValue, setSearchValue] = useState('');
+  const [query, setQuery] = useState({});
 
-  const pokemonCards = data.pokemons.map((pokemon) => (
+  const { data, isLoading, isError } = useData('getPokemons', query, [searchValue]);
+
+  const handleSearchValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+    setQuery((s) => ({
+      ...s,
+      name: e.target.value,
+    }));
+  };
+
+  const pokemonCards = data?.pokemons.map((pokemon) => (
     <div className={s.card}>
       <PokemonCard key={pokemon.id} pokemon={pokemon} />
     </div>
@@ -50,6 +35,9 @@ export const PokedexPage = () => {
   return (
     <div>
       <div>{data.total} Pokemons for you to choose your favorite</div>
+      <div>
+        <input type="text" value={searchValue} onChange={handleSearchValueChange} />
+      </div>
       <div className={s.cards}>{pokemonCards}</div>
     </div>
   );
