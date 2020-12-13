@@ -16,7 +16,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'no-shadow': 'off',
     'react/prop-types': 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
     'import/prefer-default-export': 'off',
     'no-console': 'warn',
     'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx', '.ts', '.js'] }],
